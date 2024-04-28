@@ -75,12 +75,15 @@ npx @backstage/create-app@latest
 ```
 
 Selecione o nome da aplicação e o output desejado deve ser parecido com isso:
+
 <img src="assets/1.png" width="80%">
 
 Navegue até a aplicação e execute o comando `yarn dev` para testar ela rodando localmente:
+
 <img src="assets/2.png" width="80%">
 
 É provável que por não ter sido estabelecido nenhum tipo de autenticação, deverá abrir em seu navegador uma tela parecida com essa, que inclui um erro de autenticação:
+
 <img src="assets/3.png" width="80%">
 
 Nesse sentido, é importante gerar um token por meio do comando:
@@ -89,10 +92,12 @@ openssl rand -base64 32
 ```
 
 Com o token gerado, altere os arquivos `app-config.production.yaml` e `app-config.yaml` inserindo o backend.auth:
+
 <img src="assets/4.png" width="80%">
 <img src="assets/5.png" width="80%">
 
 Além disso, é possível alterar o nome da aplicação e org no `app-config.yaml`, ao rodar localmente novamente, deve-se ter algo parecido com isso:
+
 <img src="assets/6.png" width="80%">
 
 ### Execução do Backstage no Kubernetes
@@ -143,6 +148,7 @@ psql -U $POSTGRES_USER
 <img src="assets/10.png" width="80%">
 
 Agora é necessário atualizar a autenticação por meio de um token de autorização do Github antes de concluir o deploy em Kubernetes, pode ser feito por meio do editor de sua preferência(e.g: vim, nano). Nesse caso, o nano foi utilizado para alterar o token no arquivo bs-secret.yaml, dentro do repositório backstage-resources.
+
 <img src="assets/11.png" width="80%">
 
 ### Deploy no Kubernetes
@@ -155,9 +161,11 @@ kubectl apply -f backstage-resources
 # Verifique a instância em execução
 kubectl port-forward --namespace=backstage svc/backstage 8080:80
 ```
+
 <img src="assets/13.png" width="80%">
 
 ### Aplicação em execução
-Ao abrir a porta <a href="http://127.0.0.1:8080/">http://127.0.0.1:8080/</a>, é esperado ter algo parecido com isso
+Ao abrir a porta <a href="http://127.0.0.1:8080/">http://127.0.0.1:8080/</a>, é esperado ter algo parecido com isso:
+
 <img src="assets/12.png" width="80%">
 <img src="assets/14.png" width="80%">
